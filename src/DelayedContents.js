@@ -3,6 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 
 const DelayedContents = ({ action, children }) => {
   const [loading, setLoading] = useState(true);
+  console.log("Delayed Contents");
 
   useEffect(() => {
     // Why does useEffect fall into infinite loop?
