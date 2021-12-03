@@ -8,6 +8,7 @@ const DelayedContents = ({ action, children }) => {
   useEffect(() => {
     // Why does useEffect fall into infinite loop?
     console.log(action);
+    console.log(action());
     action()
       .then((response) => {
         setLoading(false);

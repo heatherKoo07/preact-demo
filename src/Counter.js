@@ -1,5 +1,5 @@
 import { Connect } from "redux-zero/preact";
-import { useEffect } from "preact/hooks";
+import { useEffect, useCallback } from "preact/hooks";
 import DelayedContents from "./DelayedContents";
 
 import actions from "./actions";
@@ -12,20 +12,25 @@ export default () => (
       // useEffect(()=>{
       //   delay()
       // }, [delay])
-      console.log(count)
-      console.log(msg)
+      const action = useCallback(() => {
+        return delay();
+      }, [delay]);
 
-       return <div>
-          <DelayedContents action={() => delay()}>
+      console.log(count);
+      console.log(msg);
+
+      return (
+        <div>
+          <DelayedContents action={action}>
             <h1>{count}</h1>
             <div>{msg}</div>
           </DelayedContents>
-        <div>
-          <button onClick={decrement}>decrement</button>
-          <button onClick={increment}>increment</button>
-          
+          <div>
+            <button onClick={decrement}>decrement</button>
+            <button onClick={increment}>increment</button>
+          </div>
         </div>
-      </div>
+      );
     }}
   </Connect>
 );
